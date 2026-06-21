@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/tasks', fn() => 'タスク一覧')->name('tasks.index');
+    Route::get('/categories', fn() => 'カテゴリ一覧')->name('categories.index');
 });
